@@ -1,0 +1,666 @@
+/* Reset & common */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-weight: 300;
+    color: #333;
+    background: #fff;
+}
+
+.container {
+    width: 1200px;
+    max-width: 95%;
+    margin: 0 auto;
+}
+
+/* HEADER TOP */
+.header-top {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 6px 0;
+}
+
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+/* Hotline */
+.hotline {
+    color: #222;
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+}
+
+.hotline strong {
+    color: #d63031; /* đỏ nổi bật giống trong hình */
+    margin-left: 4px;
+}
+
+.icon-phone::before {
+    content: "\260E";
+    color: #d63031;
+    margin-right: 6px;
+    font-weight: 400;
+}
+
+/* Store system ở giữa */
+.store-system {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: 14px;
+    color: #555;
+    letter-spacing: 0.02em;
+}
+
+.icon-location::before {
+    content: "\1F4CD";
+    color: #555;
+    margin-right: 6px;
+    font-weight: 400;
+}
+/* FORCE ẩn tất cả search-box trùng lặp */
+.search-box:not(#mainSearchBox) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -10000px !important;
+}
+
+/* Chỉ hiển thị search box chính */
+#mainSearchBox {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+}
+
+.search-box:hover {
+  border-color: #e6560e;
+}
+
+.search-box input {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 14px;
+  color: #333;
+}
+
+.search-box input::placeholder {
+  color: #ccc;
+}
+
+.search-box button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-box button svg {
+  stroke: #e6560e;
+  transition: stroke 0.3s;
+}
+
+.search-box button:hover svg {
+  stroke: #c3440b;
+}
+
+/* Phần actions TRA CỨU TÀI KHOẢN GIỎ HÀNG bên phải */
+.header-actions {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    font-size: 12px;
+    color: #403562;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* Mỗi action item */
+.action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    min-width: 50px;
+    position: relative;
+}
+
+/* Link chứa icon + text */
+.action-item a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    font-size: 20px;
+}
+
+/* Icon luôn to đều */
+.action-item [class^="icon-"] {
+    font-size: 20px;
+    line-height: 1;
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+/* Cart count màu đỏ trên giỏ hàng */
+.cart-wrapper {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: #d63031;
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
+    padding: 8px 12px;
+    border-radius: 12px;
+}
+
+/* ICONS placeholders (emoji) */
+.icon-search-product::before { content: "🔍"; }
+.icon-account::before { content: "👤"; }
+.icon-cart::before { content: "🛒"; }
+
+/* Hover đổi màu cho đẹp */
+.action-item a:hover {
+    color: #d63031;
+}
+
+
+/* HEADER SEARCH */
+.header-search {
+    background-color: #fff;
+    border-top: 2px solid #d63031;
+    border-bottom: 2px solid #d63031;
+    padding: 8px 0;
+}
+
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-search input[type="text"] {
+    width: 350px;
+    max-width: 100%;
+    padding: 8px 15px;
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    font-weight: 300;
+    outline-offset: 0;
+    outline-color: #d63031;
+    transition: border-color 0.3s;
+}
+
+.header-search input[type="text"]:focus {
+    border-color: #d63031;
+}
+
+/* Responsive cho header */
+@media (max-width: 768px) {
+    .header-flex {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .store-system {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .header-actions {
+        order: 2;
+        gap: 15px;
+    }
+
+    .hotline {
+        order: 1;
+    }
+
+    .header-search input[type="text"] {
+        width: 90%;
+    }
+}
+
+
+.header-search input[type="text"] {
+    width: 400px;
+    max-width: 90%;
+    padding: 7px 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.header-search .search-btn {
+    background: none;
+    border: none;
+    margin-left: 5px;
+    cursor: pointer;
+    color: #f25722;
+    font-size: 18px;
+}
+
+.user-actions {
+    position: absolute;
+    top: 8px;
+    right: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    cursor: pointer;
+    position: relative;
+    color: #111;
+}
+
+.action-item i {
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background: #f25722;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 12px;
+}
+
+/* Icons for user-actions (simple placeholders) */
+.icon-search-product::before { content: "🔍"; }
+.icon-account::before { content: "👤"; }
+.icon-cart::before { content: "🛒"; }
+
+/* Main nav */
+.main-nav {
+    background-color: #f25722;
+}
+
+.menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.menu > li {
+    position: relative;
+}
+
+.menu > li > a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.menu > li > a:hover,
+.menu > li:hover > a {
+    background-color: #d94814;
+}
+
+.arrow {
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    width: 1200px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    color: #333;
+    padding: 20px;
+    z-index: 999;
+    max-height: 400px;
+    overflow-y: auto;
+    border-radius: 0 0 6px 6px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.mega-menu .menu-column {
+    flex: 1 1 0;
+    max-width: 170px;
+    border-right: 1px solid #ccc;
+    padding-right: 15px;
+}
+
+.mega-menu .menu-column:last-child {
+    border-right: none;
+}
+
+.menu-column h3 {
+    color: #f25722;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 16px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+.menu-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+    font-size: 13px;
+}
+
+.menu-column ul li {
+    margin-bottom: 6px;
+}
+
+.menu-column ul li a {
+    text-decoration: none;
+    color: #555;
+}
+
+.menu-column ul li a:hover {
+    color: #f25722;
+}
+
+.view-more {
+    font-size: 13px;
+    color: #f25722;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Small dropdown for HƯỚNG DẪN menu */
+.small-menu {
+    flex-direction: column;
+    width: 150px;
+    box-shadow: none;
+    border-radius: 0 0 6px 6px;
+}
+
+.small-menu li {
+    margin-bottom: 6px;
+}
+
+.small-menu li a {
+    color: #333;
+    padding: 8px 10px;
+    display: block;
+}
+
+.small-menu li a:hover {
+    background-color: #fce6dc;
+    color: #f25722;
+}
+
+/* Highlight section */
+.highlight-section {
+    background: #fff;
+    margin: 0 auto 30px auto;
+    padding: 25px 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.highlight-section .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.highlight-item {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    flex: 1 1 20%;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    min-width: 220px;
+    gap: 12px;
+    color: #f25722;
+    font-size: 13px;
+}
+
+.highlight-item i {
+    font-size: 28px;
+}
+
+/* Placeholder icons */
+.icon-ship::before { content: "🚚"; }
+.icon-quality::before { content: "👍"; }
+.icon-payment::before { content: "💳"; }
+.icon-return::before { content: "🔄"; }
+/* Breadcrumb */
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.breadcrumb {
+    font-size: 14px;
+    margin-bottom: 25px;
+    background-color: #fafafa;
+    border-radius: 6px;
+    padding: 10px 15px;
+    color: #666;
+}
+
+.breadcrumb a {
+    color: #f05a28;
+}
+
+/* Contact section layout */
+.contact-section {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Left form side */
+.contact-left {
+    flex: 1 1 480px;
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 6px;
+    box-shadow: 3px 2px 8px rgba(19, 86, 150, 0.15);
+    box-sizing: border-box;
+    max-width: 600px;
+}
+
+.contact-left h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.contact-left p {
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.highlight-number {
+    color: #f7a007;
+}
+
+.highlight-email {
+    color: #f7a007;
+}
+
+.contact-left h3 {
+    padding-top: 20px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* Form styles */
+#contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#contactForm .row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+#contactForm input[type="text"],
+#contactForm input[type="email"],
+#contactForm input[type="tel"],
+#contactForm textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    resize: vertical;
+}
+
+#contactForm .row input {
+    flex: 1 1 50%;
+}
+
+#contactForm textarea {
+    min-height: 100px;
+}
+
+.btn-submit {
+    width: max-content;
+    background-color: #00416d;
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 10px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #063a69;
+}
+
+/* Right store list side */
+.contact-right {
+    flex: 1 1 320px;
+    background-color: transparent;
+    padding: 25px 25px;
+    border-radius: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    max-width: 600px;
+}
+
+.contact-right .vnb-logo {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 160px;
+}
+
+.store-list {
+    list-style: none;
+    font-size: 14px;
+    color: #222;
+    margin-bottom: 20px;
+    padding-left: 15px;
+}
+
+.store-list li {
+    margin-bottom: 18px;
+}
+
+.store-list strong {
+    color: #f05a28;
+}
+
+.map-wrapper iframe {
+    border-radius: 6px;
+    border: none;
+    width: 100%;
+    height: 250px;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+    .header-top {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .header-left, .header-actions {
+        flex: 1 1 100%;
+        justify-content: center;
+        margin-bottom: 10px;
+        order: 1;
+        white-space: normal;
+    }
+
+    .header-center {
+        min-width: auto;
+        width: 100%;
+        margin-top: 10px;
+        order: 3;
+    }
+
+    .menu {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .contact-section {
+        flex-direction: column;
+    }
+
+    .contact-left, .contact-right {
+        max-width: 100%;
+        flex: 1 1 100%;
+    }
+}

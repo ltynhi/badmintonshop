@@ -1,0 +1,115 @@
+/* COMMON STYLES - Shared across all pages */
+body {
+    margin: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+    line-height: 1.6;
+    font-weight: 300;
+    color: #333;
+}
+
+.arrow {
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+/* Common button styles */
+.btn-primary {
+    background: #e6560e;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #d73027;
+    transform: translateY(-2px);
+}
+
+/* Common form styles */
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #e6560e;
+    box-shadow: 0 0 0 2px rgba(230, 86, 14, 0.1);
+}
+
+/* Common container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Common responsive utilities */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+}
+/* My Orders Page Styles */
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+.btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+    background-color: transparent;
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+    background-color: transparent;
+}
+
+.btn-outline-danger:hover {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* Order status colors */
+.order-status-pending { color: #ffc107; }
+.order-status-confirmed { color: #17a2b8; }
+.order-status-processing { color: #17a2b8; }
+.order-status-shipping { color: #007bff; }
+.order-status-completed { color: #28a745; }
+.order-status-cancelled { color: #dc3545; }
