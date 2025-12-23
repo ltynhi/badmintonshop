@@ -143,11 +143,11 @@
           {{-- Previous Page Link --}}
           @if ($products->onFirstPage())
             <li class="disabled" style="opacity: 0.5;">
-              <span style="display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; border: 1px solid #ddd; border-radius: 5px; font-size: 18px;">‹</span>
+              <span style="display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; border: 1px solid #ddd; border-radius: 5px; font-size: 12px;">‹</span>
             </li>
           @else
             <li>
-              <a href="{{ $products->previousPageUrl() }}" style="display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; border: 1px solid #ddd; border-radius: 5px; text-decoration: none; color: #333; font-size: 18px; transition: all 0.3s;">‹</a>
+              <a href="{{ $products->previousPageUrl() }}" style="display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; border: 1px solid #ddd; border-radius: 5px; text-decoration: none; color: #333; font-size: 12px; transition: all 0.3s;">‹</a>
             </li>
           @endif
 
@@ -167,11 +167,11 @@
           {{-- Next Page Link --}}
           @if ($products->hasMorePages())
             <li>
-              <a href="{{ $products->nextPageUrl() }}" style="display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; border: 1px solid #ddd; border-radius: 5px; text-decoration: none; color: #333; font-size: 18px; transition: all 0.3s;">›</a>
+              <a href="{{ $products->nextPageUrl() }}" style="display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; border: 1px solid #ddd; border-radius: 5px; text-decoration: none; color: #333; font-size: 12px; transition: all 0.3s;">›</a>
             </li>
           @else
             <li class="disabled" style="opacity: 0.5;">
-              <span style="display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; border: 1px solid #ddd; border-radius: 5px; font-size: 18px;">›</span>
+              <span style="display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; border: 1px solid #ddd; border-radius: 5px; font-size: 12px;">›</span>
             </li>
           @endif
         </ul>

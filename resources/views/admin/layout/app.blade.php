@@ -213,6 +213,41 @@
         .btn-info {
             background: linear-gradient(135deg, var(--info-color) 0%, #42A5F5 100%);
         }
+        
+        /* Fix pagination - Hide Previous/Next arrows, keep only numbers */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .pagination .page-link {
+            font-size: 14px !important;
+            padding: 8px 12px !important;
+            border-radius: 5px;
+            margin: 0 2px;
+        }
+        
+        /* Hide Previous and Next buttons completely - More specific selectors */
+        nav .pagination .page-item:first-child,
+        nav .pagination .page-item:last-child,
+        .pagination .page-item:first-child,
+        .pagination .page-item:last-child {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            width: 0 !important;
+            height: 0 !important;
+            overflow: hidden !important;
+        }
+        
+        /* Also hide any pagination links with rel="prev" or rel="next" */
+        .pagination a[rel="prev"],
+        .pagination a[rel="next"],
+        .pagination span[aria-label*="Previous"],
+        .pagination span[aria-label*="Next"] {
+            display: none !important;
+        }
     </style>
     @stack('styles')
 </head>

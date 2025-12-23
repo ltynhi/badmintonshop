@@ -1,59 +1,258 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏸 Badminton Shop - Laravel E-commerce Website
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Hệ thống website bán đồ cầu lông được xây dựng bằng Laravel với giao diện hiện đại và tính năng đầy đủ.
 
-## About Laravel
+## 🚀 Tính năng chính
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- ✅ **Quản lý sản phẩm** - Danh mục, sản phẩm, hình ảnh
+- ✅ **Hệ thống người dùng** - Đăng ký, đăng nhập, profile
+- ✅ **Giỏ hàng & Thanh toán** - Đặt hàng, quản lý đơn hàng
+- ✅ **Đánh giá sản phẩm** - Hệ thống review với duyệt
+- ✅ **Tin tức** - Quản lý bài viết tin tức
+- ✅ **Liên hệ** - Form liên hệ với email tự động
+- ✅ **Admin Panel** - Quản trị toàn diện
+- ✅ **Responsive Design** - Tối ưu mobile
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📋 Yêu cầu hệ thống
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- PHP >= 8.1
+- Composer
+- Node.js & NPM
+- MySQL/MariaDB
+- Apache/Nginx
 
-## Learning Laravel
+## 🛠️ Hướng dẫn cài đặt
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### Cách 1: Sử dụng Auto Setup Script (Khuyến nghị)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### Linux/Mac:
+```bash
+git clone https://github.com/ltynhi/badmintonshop.git
+cd badmintonshop
+chmod +x setup.sh
+./setup.sh
+```
 
-## Laravel Sponsors
+#### Windows:
+```bash
+git clone https://github.com/ltynhi/badmintonshop.git
+cd badmintonshop
+setup.bat
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Cách 2: Cài đặt thủ công
 
-### Premium Partners
+#### 1. Clone repository
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```bash
+git clone https://github.com/ltynhi/badmintonshop.git
+cd badmintonshop
+```
 
-## Contributing
+#### 2. Cài đặt dependencies
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+# Cài đặt PHP dependencies
+composer install
 
-## Code of Conduct
+# Cài đặt Node.js dependencies
+npm install
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### 3. Cấu hình môi trường
 
-## Security Vulnerabilities
+```bash
+# Copy file .env
+cp .env.example .env
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Generate application key
+php artisan key:generate
+```
 
-## License
+#### 4. Cấu hình database
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Mở file `.env` và cập nhật thông tin database:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=badminton_shop
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+#### 5. Tạo database và chạy migration
+
+```bash
+# Tạo database (MySQL)
+mysql -u root -p
+CREATE DATABASE badminton_shop;
+exit
+
+# Chạy migration
+php artisan migrate
+
+# Chạy seeder (dữ liệu mẫu)
+php artisan db:seed
+```
+
+#### 6. Tạo symbolic link cho storage
+
+```bash
+php artisan storage:link
+```
+
+#### 7. Build assets
+
+```bash
+npm run build
+# hoặc cho development
+npm run dev
+```
+
+#### 8. Chạy server
+
+```bash
+php artisan serve
+```
+
+Website sẽ chạy tại: `http://localhost:8000`
+
+## 👤 Tài khoản mặc định
+
+### Admin
+- **Email:** admin@admin.com
+- **Password:** 123456
+
+### Customer
+- **Email:** customer@test.com  
+- **Password:** 123456
+
+## 📁 Cấu trúc thư mục
+
+```
+badmintonshop/
+├── app/
+│   ├── Http/Controllers/     # Controllers
+│   ├── Models/              # Models
+│   └── ...
+├── database/
+│   ├── migrations/          # Database migrations
+│   ├── seeders/            # Database seeders
+│   └── ...
+├── public/
+│   ├── css/                # CSS files
+│   ├── js/                 # JavaScript files
+│   └── storage/            # Uploaded files
+├── resources/
+│   ├── views/              # Blade templates
+│   └── ...
+└── routes/
+    └── web.php             # Web routes
+```
+
+## 🎨 Tính năng nổi bật
+
+### Frontend
+- **Giao diện hiện đại** với gradient và animations
+- **Responsive design** tối ưu mobile
+- **Trang hướng dẫn** chọn vợt cầu lông chi tiết
+- **Hệ thống đánh giá** sản phẩm với sao
+- **Giỏ hàng Ajax** không reload trang
+
+### Backend  
+- **Admin dashboard** quản lý toàn diện
+- **Quản lý đơn hàng** với nhiều trạng thái
+- **Hệ thống email** tự động
+- **Upload hình ảnh** với validation
+- **Phân quyền** admin/customer
+
+## 🔧 Cấu hình bổ sung
+
+### Email Configuration
+Cập nhật thông tin email trong `.env`:
+
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=your-email@gmail.com
+MAIL_PASSWORD=your-app-password
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=your-email@gmail.com
+MAIL_FROM_NAME="Badminton Shop"
+```
+
+### File Upload
+Đảm bảo thư mục storage có quyền ghi:
+
+```bash
+chmod -R 775 storage
+chmod -R 775 bootstrap/cache
+```
+
+## 🐛 Troubleshooting
+
+### Lỗi thường gặp:
+
+1. **500 Internal Server Error**
+   ```bash
+   php artisan config:clear
+   php artisan cache:clear
+   php artisan route:clear
+   php artisan view:clear
+   ```
+
+2. **Storage link không hoạt động**
+   ```bash
+   php artisan storage:link --force
+   ```
+
+3. **Permission denied (Linux/Mac)**
+   ```bash
+   sudo chown -R www-data:www-data storage
+   sudo chown -R www-data:www-data bootstrap/cache
+   chmod -R 775 storage
+   chmod -R 775 bootstrap/cache
+   ```
+
+4. **Database connection failed**
+   - Kiểm tra MySQL/MariaDB đã chạy chưa
+   - Kiểm tra thông tin database trong `.env`
+   - Đảm bảo database đã được tạo
+
+5. **Composer install failed**
+   ```bash
+   composer install --ignore-platform-reqs
+   ```
+
+6. **NPM install failed**
+   ```bash
+   npm cache clean --force
+   npm install
+   ```
+
+### ⚠️ Lưu ý quan trọng:
+
+- **Đảm bảo PHP >= 8.1** và các extension cần thiết đã được cài đặt
+- **Tạo database trước** khi chạy migration
+- **Chạy seeder** để có dữ liệu mẫu
+- **Build assets** trước khi chạy website
+- **Cấu hình email** nếu muốn sử dụng tính năng gửi mail
+
+## 📞 Hỗ trợ
+
+Nếu gặp vấn đề, vui lòng:
+1. Kiểm tra file log: `storage/logs/laravel.log`
+2. Đảm bảo đã cài đặt đúng PHP version
+3. Kiểm tra database connection
+4. Xem lại các bước cài đặt
+
+## 📄 License
+
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+---
+
+**Developed with ❤️ by ltynhi**

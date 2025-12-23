@@ -373,7 +373,7 @@
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <h3><i class="fas fa-store"></i> VNB Sports</h3>
+            <h3><i class="fas fa-store"></i> </h3>
             <p>Quản trị hệ thống</p>
         </div>
         

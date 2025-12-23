@@ -189,12 +189,12 @@
             <div class="footer-column">
                 <h3>THÔNG TIN LIÊN HỆ</h3>
                 <p><strong>Hotline:</strong> 0977508430 | 0338000308</p>
-                <p><strong>Email:</strong> info@shopvnb.com</p>
+                <p><strong>Email:</strong> info@shopcoza.com</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>Công ty TNHH VNB SPORTS</p>
-            <p>Email: info@shopvnb.com</p>
+            <p>Công ty TNHH COZA SPORTS</p>
+            <p>Email: info@shopcoza.com</p>
         </div>
     </footer>
 </body>
