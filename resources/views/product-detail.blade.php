@@ -600,12 +600,18 @@
                                 <span class="star" data-rating="4" onclick="setRating(4)" style="cursor: pointer;">☆</span>
                                 <span class="star" data-rating="5" onclick="setRating(5)" style="cursor: pointer;">☆</span>
                             </div>
-                            <input type="hidden" name="rating" id="rating" value="5" required>
+                            <input type="hidden" name="rating" id="rating" value="{{ old('rating', 5) }}" required>
+                            @error('rating')
+                                <div style="color: #e74c3c; font-size: 0.9rem; margin-top: 5px;">{{ $message }}</div>
+                            @enderror
                         </div>
                         
                         <div style="margin-bottom: 15px;">
                             <label style="display: block; margin-bottom: 8px; font-weight: 600;">Nhận xét của bạn:</label>
                             <textarea name="comment" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; resize: vertical;" placeholder="Chia sẻ trải nghiệm của bạn về sản phẩm này..." required>{{ old('comment') }}</textarea>
+                            @error('comment')
+                                <div style="color: #e74c3c; font-size: 0.9rem; margin-top: 5px;">{{ $message }}</div>
+                            @enderror
                         </div>
                         
                         <button type="submit" style="padding: 10px 20px; background: #e6560e; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">
@@ -716,6 +722,7 @@
 
     // Star rating function
     function setRating(rating) {
+        console.log('Setting rating to:', rating);
         document.getElementById('rating').value = rating;
         const stars = document.querySelectorAll('.star');
         stars.forEach((star, index) => {
@@ -729,15 +736,39 @@
         });
     }
 
-    // Set default 5 stars on page load
+    // Set default rating on page load
     document.addEventListener('DOMContentLoaded', function() {
-        setRating(5);
+        const defaultRating = {{ old('rating', 5) }};
+        setRating(defaultRating);
+        
+        // Add form submit handler for debugging
+        const reviewForm = document.querySelector('form[action*="review"]');
+        if (reviewForm) {
+            reviewForm.addEventListener('submit', function(e) {
+                const rating = document.getElementById('rating').value;
+                const comment = document.querySelector('textarea[name="comment"]').value;
+                
+                console.log('Form submitting with:');
+                console.log('Rating:', rating);
+                console.log('Comment:', comment);
+                
+                if (!rating || rating < 1 || rating > 5) {
+                    e.preventDefault();
+                    alert('Vui lòng chọn đánh giá từ 1-5 sao');
+                    return false;
+                }
+                
+                if (!comment || comment.trim().length < 10) {
+                    e.preventDefault();
+                    alert('Vui lòng nhập nhận xét ít nhất 10 ký tự');
+                    return false;
+                }
+                
+                console.log('Form validation passed, submitting...');
+            });
+        }
     });
 
-</script>
-</script>
-
-<script>
     function toggleUserMenu() {
         const dropdown = document.getElementById('userDropdown');
         dropdown.classList.toggle('show');

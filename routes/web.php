@@ -112,3 +112,8 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
     Route::post('/reports/export/excel', [ReportController::class, 'exportExcel'])->name('reports.export.excel');
     Route::post('/reports/export/pdf', [ReportController::class, 'exportPdf'])->name('reports.export.pdf');
 });
+
+// Test routes (remove in production)
+if (app()->environment('local')) {
+    require __DIR__ . '/test.php';
+}

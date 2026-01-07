@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Models\Notification;
 use Carbon\Carbon;
 
 class PasswordResetController extends Controller
@@ -42,11 +43,19 @@ class PasswordResetController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        // Gửi email (tạm thời comment để test)
-        // Mail::send('emails.password-reset', ['token' => $token], function($message) use($request){
-        //     $message->to($request->email);
-        //     $message->subject('Reset Password');
-        // });
+        // Gửi email reset password (Bước 12-13 trong biểu đồ)
+        try {
+            Mail::send('emails.password-reset', ['token' => $token], function($message) use($request){
+                $message->to($request->email);
+                $message->subject('Đặt lại mật khẩu - Coza Shop');
+                $message->from(config('mail.from.address', 'noreply@cozashop.com'), 'Coza Shop');
+            });
+            
+            \Log::info('Password reset email sent', ['email' => $request->email, 'token' => $token]);
+        } catch (\Exception $e) {
+            \Log::error('Failed to send password reset email: ' . $e->getMessage());
+            return back()->with('error', 'Có lỗi xảy ra khi gửi email. Vui lòng thử lại sau.');
+        }
 
         return back()->with('success', 'Chúng tôi đã gửi link đặt lại mật khẩu đến email của bạn!');
     }
@@ -92,8 +101,20 @@ class PasswordResetController extends Controller
         }
 
         // Cập nhật mật khẩu mới
-        User::where('email', $request->email)
-            ->update(['password' => Hash::make($request->password)]);
+        $user = User::where('email', $request->email)->first();
+        $user->update(['password' => Hash::make($request->password)]);
+
+        // Tạo notification đặt lại mật khẩu thành công
+        Notification::create([
+            'user_id' => $user->id,
+            'type' => 'password_reset',
+            'title' => 'Mật khẩu đã được đặt lại',
+            'message' => 'Mật khẩu của bạn đã được đặt lại thành công lúc ' . now()->format('H:i d/m/Y'),
+            'data' => [
+                'reset_time' => now()->toISOString(),
+                'ip_address' => $request->ip()
+            ]
+        ]);
 
         // Xóa token
         DB::table('password_reset_tokens')->where('email', $request->email)->delete();

@@ -1,6 +1,6 @@
-# 🏸 Badminton Shop - Laravel E-commerce Website
+# 🛍️ COZA Store - Hệ thống quản lý cửa hàng trực tuyến
 
-Hệ thống website bán đồ cầu lông được xây dựng bằng Laravel với giao diện hiện đại và tính năng đầy đủ.
+Hệ thống website bán hàng trực tuyến COZA Store được xây dựng bằng Laravel với giao diện hiện đại và tính năng đầy đủ.
 
 ## 🚀 Tính năng chính
 
@@ -27,16 +27,16 @@ Hệ thống website bán đồ cầu lông được xây dựng bằng Laravel 
 
 #### Linux/Mac:
 ```bash
-git clone https://github.com/ltynhi/badmintonshop.git
-cd badmintonshop
+git clone https://github.com/ltynhi/coza-store.git
+cd coza-store
 chmod +x setup.sh
 ./setup.sh
 ```
 
 #### Windows:
 ```bash
-git clone https://github.com/ltynhi/badmintonshop.git
-cd badmintonshop
+git clone https://github.com/ltynhi/coza-store.git
+cd coza-store
 setup.bat
 ```
 
@@ -45,8 +45,8 @@ setup.bat
 #### 1. Clone repository
 
 ```bash
-git clone https://github.com/ltynhi/badmintonshop.git
-cd badmintonshop
+git clone https://github.com/ltynhi/coza-store.git
+cd coza-store
 ```
 
 #### 2. Cài đặt dependencies

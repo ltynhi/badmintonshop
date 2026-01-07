@@ -11,7 +11,16 @@ class ReviewController extends Controller
 {
     public function store(Request $request, Product $product)
     {
+        // Debug log
+        \Log::info('Review store method called', [
+            'product_id' => $product->id,
+            'user_id' => Auth::id(),
+            'request_data' => $request->all(),
+            'is_authenticated' => Auth::check()
+        ]);
+
         if (!Auth::check()) {
+            \Log::warning('User not authenticated for review');
             return redirect()->route('login')->with('error', 'Vui lòng đăng nhập để đánh giá');
         }
 
@@ -33,17 +42,47 @@ class ReviewController extends Controller
             ->first();
 
         if ($existingReview) {
+            \Log::info('User already reviewed this product', ['review_id' => $existingReview->id]);
             return back()->with('error', 'Bạn đã đánh giá sản phẩm này rồi');
         }
 
-        Review::create([
-            'product_id' => $product->id,
-            'user_id' => Auth::id(),
-            'rating' => $request->rating,
-            'comment' => $request->comment,
-            'is_approved' => false // Chờ admin duyệt
-        ]);
+        try {
+            $review = Review::create([
+                'product_id' => $product->id,
+                'user_id' => Auth::id(),
+                'rating' => $request->rating,
+                'comment' => $request->comment,
+                'is_approved' => false // Chờ admin duyệt
+            ]);
 
-        return back()->with('success', 'Cảm ơn bạn đã đánh giá! Đánh giá của bạn sẽ được hiển thị sau khi được duyệt.');
+            \Log::info('Review created successfully', ['review_id' => $review->id]);
+
+            // Tạo notification cho admin về review mới (Bước 19 trong biểu đồ)
+            $adminUsers = \App\Models\User::where('role', 'admin')->get();
+            foreach ($adminUsers as $admin) {
+                \App\Models\Notification::create([
+                    'user_id' => $admin->id,
+                    'type' => 'new_review',
+                    'title' => 'Đánh giá mới cần duyệt',
+                    'message' => Auth::user()->name . ' đã đánh giá sản phẩm "' . $product->name . '" với ' . $request->rating . ' sao',
+                    'data' => [
+                        'product_id' => $product->id,
+                        'product_name' => $product->name,
+                        'reviewer_name' => Auth::user()->name,
+                        'rating' => $request->rating,
+                        'review_time' => now()->toISOString()
+                    ]
+                ]);
+            }
+
+            return back()->with('success', 'Cảm ơn bạn đã đánh giá! Đánh giá của bạn sẽ được hiển thị sau khi được duyệt.');
+            
+        } catch (\Exception $e) {
+            \Log::error('Error creating review', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            return back()->with('error', 'Có lỗi xảy ra khi gửi đánh giá. Vui lòng thử lại.');
+        }
     }
 }

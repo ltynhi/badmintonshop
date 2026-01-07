@@ -1,9 +1,9 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "coza-store/coza-store",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "COZA Store - Hệ thống quản lý cửa hàng trực tuyến.",
+    "keywords": ["coza-store", "ecommerce", "laravel", "online-shop"],
     "license": "MIT",
     "require": {
         "php": "^8.2",

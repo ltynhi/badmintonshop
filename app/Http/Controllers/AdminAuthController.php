@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Notification;
 
 class AdminAuthController extends Controller
 {
@@ -37,6 +38,19 @@ class AdminAuthController extends Controller
                 'user_id' => Auth::user()->id,
                 'user_role' => Auth::user()->role,
                 'is_admin' => Auth::user()->isAdmin()
+            ]);
+            
+            // Tạo notification đăng nhập thành công (Bước 11 trong biểu đồ)
+            Notification::create([
+                'user_id' => Auth::user()->id,
+                'type' => 'login_success',
+                'title' => 'Đăng nhập thành công',
+                'message' => 'Bạn đã đăng nhập vào hệ thống lúc ' . now()->format('H:i d/m/Y'),
+                'data' => [
+                    'login_time' => now()->toISOString(),
+                    'ip_address' => $request->ip(),
+                    'user_agent' => $request->userAgent()
+                ]
             ]);
             
             if (Auth::user()->isAdmin()) {
